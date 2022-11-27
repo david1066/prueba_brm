@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
@@ -106,11 +107,11 @@ class ContactController extends Controller
         //valida los campos
         $data=$request->all();
         $data['id']=$id;
-        
+       
         $validate=\Validator::make($data, [      
             'phone' => 'required|string|min:5|max:10',
             'address' => 'required|string|max:400',
-            'email' => 'required|email:rfc,dns|unique:contacts,email',
+            'email' => 'required|email:rfc,dns',
             'id'=>'required|exists:contacts,id'
             ]);
         //retornando errores
@@ -119,6 +120,19 @@ class ContactController extends Controller
                 'code' => 404,
                 'status' => 'error',
                 'errors' => $validate->errors()
+            ];
+         
+            return response()->json($data,$data['code']);
+        }
+        //lo validamos sin el modelo porque el modelo no consulta los datos que estan eliminados por softdelete
+        //y la validacion de email unico en base de datos no lo dejaria guardar
+        $existemail=DB::table('contacts')->where('email',$request->email)->first();
+
+        if(!empty($existemail) && $existemail->id!=$id){
+            $data = [
+                'code' => 404,
+                'status' => 'error',
+                'errors' => ['email'=>['The email has already been taken.']]
             ];
          
             return response()->json($data,$data['code']);

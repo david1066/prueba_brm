@@ -7,58 +7,89 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Paquetes instalados: composer y npm
+1. fruitcake/laravel-cors: ^2.0
+2. guzzlehttp/guzzle: ^7.0.1
+3. laravel/fortify: ^1.13
+4. laravel/framework: ^8.75
+5. laravel/sanctum: ^2.11
+6. laravel/tinker: ^2.5
+7. laravel/ui: ^3.4
+8. @popperjs/core: ^2.10.2
+9. axios:^0.21
+10. bootstrap: ^5.1.3
+11. laravel-mix: ^6.0.6
+12. lodash: ^4.17.19
+13. postcss: ^8.1.14
+14. resolve-url-loader: ^3.1.2
+15. sass: ^1.32.11
+16. sass-loader: ^11.0.1
+17. vue: ^2.6.12
+18. vue-loader: ^15.9.8
+19. vue-template-compiler: ^2.6.12
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Funcionalidades
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. La eliminación está por softdelete, no sé eliminan los datos.
+2. Los modelos(color, tipodocumento, ciudad, tipovehiculo) se cargan en caché para no estar consultando tanto en base de datos.
+3. Cuando se va a eliminar un vehículo, muestra un modal para confirmar la eliminación o cancelarla.
+4. Cuando se trae un vehículo o un usuario por ID, sé utiliza la estructura whereraw(id = ?,$id) para prevenir injection SQL.
+5. Se creó un login con el paquete FORTIFY y la vistas de laravel UI.
+6. Se validan los campos con la librería VALIDATOR.
+7. La barra de navegación esta visible todo el tiempo cuando el usuario esta logueado.
+8. El sistema no permite duplicados por documento y por placa.
 
-## Learning Laravel
+## Instalación y despliegue
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Instalar composer y node.js
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+https://getcomposer.org/
 
-## Laravel Sponsors
+https://nodejs.org/es/
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+2. Clonar proyecto
 
-### Premium Partners
+git clone https://github.com/david1066/prueba_grupooet.git
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+3. Ejectuar los siguientes comandos para instalar las dependencias
 
-## Contributing
+En el proyecto backend ejecutar
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+cd backend  
 
-## Code of Conduct
+Composer install 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+cd ..
 
-## Security Vulnerabilities
+En el proyecto fronend ejecutar
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+cd frontend
 
-## License
+npm install
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. Revisamos en el proyecto backend el archivo .env que tenga correctamente las credenciales (usuario y contraseña) y creamos una base de datos con el nombre brm directamente con el administrador de base de datos.
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=brm
+DB_USERNAME=root
+DB_PASSWORD=
+
+5. Ejecutamos la migraciones que nos creara las tablas.
+
+php artisan migrate
+
+6. Corremos los proyectos
+cd backend
+php artisan serve
+cd ..
+cd frontend
+npm run serve
+
+7. en el navegador abrimos la ruta
+
+backend: http://127.0.0.1:8000
+
+frontend: http://localhost:8080
