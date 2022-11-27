@@ -11,34 +11,28 @@
 ## Paquetes instalados: composer y npm
 1. fruitcake/laravel-cors: ^2.0
 2. guzzlehttp/guzzle: ^7.0.1
-3. laravel/fortify: ^1.13
-4. laravel/framework: ^8.75
-5. laravel/sanctum: ^2.11
-6. laravel/tinker: ^2.5
-7. laravel/ui: ^3.4
-8. @popperjs/core: ^2.10.2
-9. axios:^0.21
-10. bootstrap: ^5.1.3
-11. laravel-mix: ^6.0.6
-12. lodash: ^4.17.19
-13. postcss: ^8.1.14
-14. resolve-url-loader: ^3.1.2
-15. sass: ^1.32.11
-16. sass-loader: ^11.0.1
-17. vue: ^2.6.12
-18. vue-loader: ^15.9.8
-19. vue-template-compiler: ^2.6.12
+3. @fortawesome/fontawesome-svg-core: ^6.2.1
+4. @fortawesome/free-regular-svg-icons: ^6.2.1
+5. @fortawesome/free-solid-svg-icons: ^6.2.1,
+6. @fortawesome/vue-fontawesome: ^3.0.2,
+7. axios: ^1.2.0
+8. core-js: ^3.8.3
+9. vue: ^3.2.13
+10. vue-router: ^4.0.3
+11. laravel/framework: ^8.75
+12. laravel/sanctum: ^2.11
+13. laravel/tinker: ^2.5
+14. postcss: ^8.4.19
+15. tailwindcss: ^3.2.4
 
 ## Funcionalidades
 
 1. La eliminación está por softdelete, no sé eliminan los datos.
-2. Los modelos(color, tipodocumento, ciudad, tipovehiculo) se cargan en caché para no estar consultando tanto en base de datos.
-3. Cuando se va a eliminar un vehículo, muestra un modal para confirmar la eliminación o cancelarla.
-4. Cuando se trae un vehículo o un usuario por ID, sé utiliza la estructura whereraw(id = ?,$id) para prevenir injection SQL.
-5. Se creó un login con el paquete FORTIFY y la vistas de laravel UI.
-6. Se validan los campos con la librería VALIDATOR.
-7. La barra de navegación esta visible todo el tiempo cuando el usuario esta logueado.
-8. El sistema no permite duplicados por documento y por placa.
+2. Cuando se va a eliminar un vehículo, muestra una ventana para confirmar la eliminación o cancelarla.
+3. Cuando se trae un vehículo o un usuario por ID, sé utiliza la estructura whereraw(id = ?,$id) para prevenir injection SQL.
+4. Se validan los campos con la librería VALIDATOR.
+5. La barra de navegación esta visible todo el tiempo, lo que proporciona una mejor usabilidad.
+6. El sistema no permite duplicados por email.
 
 ## Instalación y despliegue
 
@@ -50,7 +44,7 @@ https://nodejs.org/es/
 
 2. Clonar proyecto
 
-git clone https://github.com/david1066/prueba_grupooet.git
+git clone https://github.com/david1066/prueba_brm.git
 
 3. Ejectuar los siguientes comandos para instalar las dependencias
 
@@ -62,7 +56,7 @@ Composer install
 
 cd ..
 
-En el proyecto fronend ejecutar
+En el proyecto frontend ejecutar
 
 cd frontend
 
