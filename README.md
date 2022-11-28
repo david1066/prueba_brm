@@ -28,8 +28,8 @@
 ## Funcionalidades
 
 1. La eliminación está por softdelete, no sé eliminan los datos.
-2. Cuando se va a eliminar un vehículo, muestra una ventana para confirmar la eliminación o cancelarla.
-3. Cuando se trae un vehículo o un usuario por ID, sé utiliza la estructura whereraw(id = ?,$id) para prevenir injection SQL.
+2. Cuando se va a eliminar un contacto, muestra una ventana para confirmar la eliminación o cancelarla.
+3. Cuando se trae un contacto por ID, sé utiliza la estructura whereraw(id = ?,$id) para prevenir injection SQL.
 4. Se validan los campos con la librería VALIDATOR.
 5. La barra de navegación esta visible todo el tiempo, lo que proporciona una mejor usabilidad.
 6. El sistema no permite duplicados por email.
