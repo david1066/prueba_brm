@@ -14,10 +14,12 @@ class Contact extends Model
     use SoftDeletes;
     public $fillable = [
         'name', 
+        'sex',
         'phone', 
         'date_birth', 
         'address', 
         'email'
+
     ];
     protected $table='contacts';
     protected $appends = ['year'];

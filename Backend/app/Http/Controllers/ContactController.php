@@ -66,6 +66,7 @@ class ContactController extends Controller
             'address' => 'required|string|max:400',
             'date_birth' => 'required|date|date_format:Y-m-d',
             'email' => 'required|email:rfc,dns|unique:contacts,email',
+            'sex' => 'required|integer',
             ]);
         //retornando errores
         if ($validate->fails()) {
@@ -85,6 +86,7 @@ class ContactController extends Controller
         $contact->address=$request->address;
         $contact->date_birth=$request->date_birth;
         $contact->email=$request->email;
+        $contact->sex=$request->sex;
         //en caso de que no guarde
         $data = [
             'code' => 400,
@@ -112,6 +114,7 @@ class ContactController extends Controller
             'phone' => 'required|string|min:5|max:10',
             'address' => 'required|string|max:400',
             'email' => 'required|email:rfc,dns',
+            'sex' => 'required|integer',
             'id'=>'required|exists:contacts,id'
             ]);
         //retornando errores
@@ -152,6 +155,7 @@ class ContactController extends Controller
             $contact->phone=$request->phone;
             $contact->address=$request->address;
             $contact->email=$request->email;
+            $contact->sex=$request->sex;
             $contact->save();
             $data = [
                 'code' => 200,

@@ -36,6 +36,28 @@
               </div>
           </div>
         </div>
+
+        <div class="col-span-12 ">
+            <div class="p-8 bg-white shadow-md ">
+       
+              <div class="grid grid-cols-12 ">
+                <div class="col-span-2 ">
+                  <div  class="w-full mt-4 p-2">Sexo </div>
+                
+                </div> 
+                
+                <div class="col-span-10">
+
+                    <select class="p-2 mt-4 mr-0 border rounded w-full" v-model="state.contact.sex">
+                      <option value="1">Masculino</option>
+                      <option value="2">Femenino</option>
+                    </select>
+                   
+                      <span :class="{'text-red-800':state.errorcontact.sex!=''}">{{state.errorcontact.sex.toString()}}</span>
+                </div>
+              </div>
+          </div>
+        </div>
         <div class="col-span-12">
             <div class="p-8 bg-white shadow-md ">
        
@@ -148,8 +170,8 @@ export default defineComponent({
   setup() {
   
     const state = reactive({
-      contact: {name:'',phone:'',date_birth:'',address:'', email:''},
-      errorcontact: {name:'',phone:'',date_birth:'',address:'', email:''},
+      contact: {name:'',phone:'',date_birth:'',address:'', email:'',sex:''},
+      errorcontact: {name:'',phone:'',date_birth:'',address:'', email:'',sex:''},
       status:''
     });
    
@@ -159,12 +181,14 @@ export default defineComponent({
       state.errorcontact.date_birth='';
       state.errorcontact.address='';
       state.errorcontact.email='';
+      state.errorcontact.sex='';
       axios.post('http://127.0.0.1:8000/api/contact', {
         name: state.contact.name,
         phone: state.contact.phone,
         date_birth: state.contact.date_birth,
         address: state.contact.address,
         email: state.contact.email,
+        sex: state.contact.sex,
       }).then(response => {
         
         if(response.data.status=='success'){
@@ -192,6 +216,9 @@ export default defineComponent({
         if(error.response.data.errors.email){
           state.errorcontact.email= error.response.data.errors.email[0];
         }
+        if(error.response.data.errors.sex){
+          state.errorcontact.sex= error.response.data.errors.sex[0];
+        }
        
       });
 
@@ -202,10 +229,13 @@ export default defineComponent({
       state.errorcontact.date_birth='';
       state.errorcontact.address='';
       state.errorcontact.email='';
+      state.errorcontact.sex='';
+     
       axios.put('http://127.0.0.1:8000/api/contact/'+id, {
         phone: state.contact.phone,
         address: state.contact.address,
         email: state.contact.email,
+        sex: state.contact.sex,
       }).then(response => {
         
         if(response.data.status=='success'){
@@ -226,6 +256,10 @@ export default defineComponent({
         }
         if(error.response.data.errors.email){
           state.errorcontact.email= error.response.data.errors.email[0];
+        }
+        
+        if(error.response.data.errors.sex){
+          state.errorcontact.sex= error.response.data.errors.sex[0];
         }
         
       });
